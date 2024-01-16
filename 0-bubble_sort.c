@@ -13,7 +13,7 @@ int flag, aux = 0; /* aux to make the swap */
 size_t i, stop = (size - 1); /* stop: don't be out of the array */
 
 if (array == NULL || size < 2)
-return(0);
+return;
 for (i = 0; i < stop; i++)
 {
 flag = 0;
@@ -26,7 +26,7 @@ print_array(array, size);
 flag = 1; /* a swap was made */
 }
 if (flag == 0 && i == stop - 1)  /* everything is in order */
-return(0);
+return;
 if (i == (stop - 1) && flag == 1)   /* last position */
 {
 i = -1;    /* start from the beginning */
