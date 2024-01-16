@@ -1,43 +1,36 @@
 #include "sort.h"
 
 /**
- * bubble_sort - Sorts an array of integers in ascending order using
- *               the Bubble sort algorithm.
- * @array: The array to be sorted.
- * @size: Number of elements in @array.
+ * bubble_sort - sorts an array of integers in
+ * ascending order using the Bubble sort algorithm
+ * @array: array to be sorted
+ * @size: size of the array
+ * Return: void
  */
 void bubble_sort(int *array, size_t size)
 {
-    size_t i, j;
-    int temp;
-    int swapped;
+	int flag, aux = 0; /* aux to make the swap */
+	size_t i, stop = (size - 1); /* stop: don't be out of the array */
 
-    if (array == NULL || size < 2)
-        return;
-
-    for (i = 0; i < size - 1; i++)
-    {
-        swapped = 0;
-
-        for (j = 0; j < size - i - 1; j++)
-        {
-            if (array[j] > array[j + 1])
-            {
-                /* Swap the elements */
-                temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
-
-                /* Set swapped flag to true */
-                swapped = 1;
-
-                /* Print array after each swap */
-                print_array(array, size);
-            }
-        }
-
-        /* If no two elements were swapped, the array is already sorted */
-        if (swapped == 0)
-            break;
-    }
+	if (array == NULL || size < 2)
+		return;
+	for (i = 0; i < stop; i++)
+	{
+		flag = 0;
+		if (array[i] > array[i + 1])
+		{
+			aux = array[i];
+			array[i] = array[i + 1];
+			array[i + 1] = aux;
+			print_array(array, size);
+			flag = 1; /* a swap was made */
+		}
+		if (flag == 0 && i == stop - 1)  /* everything is in order */
+			return;
+		if (i == (stop - 1) && flag == 1)   /* last position */
+		{
+			i = -1;    /* start from the beginning */
+			stop--;   /* the last elements are in order */
+		}
+	}
 }
